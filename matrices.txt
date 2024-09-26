@@ -1,0 +1,191 @@
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <cstdlib>
+
+#ifdef _WIN32
+#include <windows.h> // Para gotoxy en Windows
+#endif
+
+using namespace std;
+
+int opcion = 0;
+float num1, num2;
+int valor = 0;
+int matrix[3][3];
+
+void gotoxy(int x, int y) {
+#ifdef _WIN32
+    COORD coord;
+    coord.X = x;
+    coord.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+#else
+    cout << "\033[" << y << ";" << x << "H";
+#endif
+}
+// procedimiento void
+void Saludo(){  // procedimiento de saludo
+	cout << "Buen dia" << endl;
+}
+
+void Despedida(){   // procedimiento de despedida
+	cout << "Adios" << endl; 
+
+}
+
+int sumar()  // funcion usan el return y no usan el void
+{
+	 int total = num1 + num2;
+	return total;
+}
+
+
+
+void Suma(){
+
+	 int total = num1 + num2 + 5;
+	cout << "La suma es: " << total;
+}
+
+
+void resta(int v1, int v2){
+	
+	   int total = v1 - v2;
+	  cout << "La resta es: " << total;
+}
+
+
+void aumentosalario(){
+	
+	int  nuevomonto = nuevomonto * 0.13;
+		cout << "Borrar";
+}
+
+void Modificar(){
+		cout << "Modificar";
+}
+
+void Datos(){
+	num1 = 0;
+	num2 = 0;
+	cout << "ingrese un numero: ";
+	cin >> num1; ;
+	cout << endl;
+	cout << "ingrese otro numero: ";
+	cin >> num2;
+	
+}
+
+void menu(){
+	
+	
+	do 
+	{
+    gotoxy(20,3);
+	cout << "1- Suma" << endl; 
+     gotoxy(20,5);
+	cout << "2- Resta" << endl; 
+	gotoxy(20,7);
+	cout << "3- Division" << endl; 
+	gotoxy(20,9);
+	cout << "4- Multiplicacion" << endl; 
+	gotoxy(20,11);
+	cout << "5- Salir" << endl; 
+	gotoxy(20,13);
+	cout<< "Digite una opcion: ";
+	
+	cin >> opcion;
+	
+		switch (opcion)
+	{
+		case 1:Datos(); 
+	           
+			  ;
+		       	cout << "La suma es: " << sumar() + 5; 
+				break;
+	    case 2: 
+		        int valor1 = 0;
+				int valor2 = 0;
+				cout << "ingrese un numero: ";
+			    cin >> valor1; ;
+				cout << endl;
+				cout << "ingrese otro numero: ";
+				cin >> valor2;
+		        resta(valor1, valor2); 
+		break;
+		
+	}
+		
+	} while (opcion != 5);
+
+
+}
+
+
+// hacer de 5 por 5 en donde el sistema le va a solicitar al usuario ingresar un 1 5 campos y resto de los campos un 0
+//
+
+void matrices (){
+	int contador = 1;
+	int f = 0; int c=0;
+	for(int fila = 0; fila<3; fila++)
+	{
+		for(int col = 0; col<3; col++)
+		{
+             matrix[fila][col]= 0;
+             contador++;
+     	}
+
+	}
+	
+	cout << "Ingrese una mina" << endl;
+		cout << "Ingrese una fila";
+	    cin >> f;
+			cout << "Ingrese una coluna";
+	    cin >> c;
+	    
+	    matrix[f][c] =1;
+	
+	cout << "Ingrese una mina" << endl;
+		cout << "Ingrese una fila";
+	    cin >> f;
+			cout << "Ingrese una coluna";
+	    cin >> c;
+	    
+	    matrix[f][c] =1;
+	    
+	for(int fila = 0; fila<3; fila++) // filas
+	{
+		for(int col = 0; col<3; col++)  // columnas
+		{
+          cout << "  " << matrix[fila][col];
+             
+     	}
+       cout << endl;
+	}
+
+	cout << "Ingrese una posicion en la matriz" << endl;
+		cout << "Ingrese una fila";
+	    cin >> f;
+			cout << "Ingrese una coluna";
+	    cin >> c;
+	    
+	    if(matrix[f][c] == 0){
+	    	cout << "No hay mina puede continuar";
+	    	 matrix[f][c] = 9;
+		} else if(matrix[f][c] == 1){
+			cout << " hay mina perdio una vida";
+		} else  if(matrix[f][c] == 9){
+			cout << "Debe jugar otra posicion, ya jugo en esa posicion";
+		} 
+
+}
+
+int main(int argc, char** argv) {  // fujncion principal
+ 
+   matrices();
+
+	return 0;
+}
